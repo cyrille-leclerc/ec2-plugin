@@ -23,6 +23,7 @@
  */
 package hudson.plugins.ec2;
 
+import hudson.slaves.Cloud;
 import org.jvnet.hudson.test.HudsonTestCase;
 
 import java.util.Collections;
@@ -45,10 +46,11 @@ public class AmazonEC2CloudTest extends HudsonTestCase {
     }
 
     public void testConfigRoundtrip() throws Exception {
-        AmazonEC2Cloud orig = new AmazonEC2Cloud("us-east-1", true, "abc", "def", "us-east-1", "ghi", "3", Collections.<SlaveTemplate> emptyList());
+        AmazonEC2Cloud orig = new AmazonEC2Cloud("us-east-1", true, "abc", "us-east-1", "ghi", "3", Collections.<SlaveTemplate> emptyList());
         hudson.clouds.add(orig);
         submit(createWebClient().goTo("configure").getFormByName("config"));
 
-        assertEqualBeans(orig, hudson.clouds.iterator().next(), "cloudName,region,useInstanceProfileForCredentials,accessId,secretKey,privateKey,instanceCap");
+        Cloud actual = hudson.clouds.iterator().next();
+        assertEqualBeans(orig, actual, "cloudName,region,useInstanceProfileForCredentials,credentialsId,privateKey,instanceCap");
     }
 }

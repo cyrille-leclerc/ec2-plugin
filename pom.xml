@@ -28,7 +28,7 @@ THE SOFTWARE.
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-      <version>1.447</version>
+      <version>1.609</version>
   </parent>
 
   <artifactId>ec2</artifactId>
@@ -85,6 +85,11 @@ THE SOFTWARE.
 	  <artifactId>aws-java-sdk</artifactId>
 	  <version>1.10.16</version>
 	</dependency>
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>aws-credentials</artifactId>
+			<version>1.10</version>
+		</dependency>
   	<dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>node-iterator-api</artifactId>
